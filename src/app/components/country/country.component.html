@@ -1,0 +1,58 @@
+<p>country works!</p>
+
+<div class="row mt-3">
+    <div class="col-md-4">
+      <div class="view overlay zoom">
+        <img
+          src="{{ selectedCountry.flag }}"
+          class="img-fluid img-thumbnail"
+          alt="zoom"
+        />
+        <div class="mask flex-center waves-effect waves-light"></div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <h3 class="h3-responsive text-center">{{ selectedCountry.name }}</h3>
+      <br />
+  
+      <table mdbTable hover="true">
+        <tbody>
+          <tr mdbTableCol>
+            <th>Capital</th>
+            <td>{{ selectedCountry.capital }}</td>
+          </tr>
+          <tr mdbTableCol>
+            <th>Population</th>
+            <td>{{ selectedCountry.population }}</td>
+          </tr>
+          <tr mdbTableCol>
+            <th>Languages</th>
+            <td>
+              <span *ngFor="let language of selectedCountry.languages">
+                <span *ngIf="language.name">{{ language.name }}. </span>
+              </span>
+            </td>
+          </tr>
+          <tr mdbTableCol>
+            <th>Currencies</th>
+            <td>
+              <span *ngFor="let currency of selectedCountry.currencies">
+                <span *ngIf="currency.name">{{ currency.name }}</span>
+              </span>
+            </td>
+          </tr>
+  
+          <tr mdbTableCol *ngIf="borders.length >= 1">
+            <th>Borders</th>
+            <td>
+              <div *ngFor="let country of borders" class="hand hoverable px-3">
+                <span (click)="selectBorderCountry(country)">{{
+                  country.name
+                }}</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
